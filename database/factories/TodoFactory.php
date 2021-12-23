@@ -14,7 +14,9 @@ class TodoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'userId' => $this->faker->numberBetween(888, 899),
+            'title' => $this->faker->text(25),
+            'completed' => $this->faker->boolean(),
         ];
     }
 }
