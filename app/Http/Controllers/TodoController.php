@@ -39,11 +39,11 @@ class TodoController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Todo  $todo
-     * @return \Illuminate\Http\Response
+     * @return TodoResource
      */
     public function show(Todo $todo)
     {
-        //
+        return new TodoResource($todo);
     }
 
     /**
