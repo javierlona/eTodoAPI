@@ -55,7 +55,11 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $todo->update($request->only([
+            'userId', 'title', 'completed'
+        ]));
+
+        return new TodoResource($todo);
     }
 
     /**
