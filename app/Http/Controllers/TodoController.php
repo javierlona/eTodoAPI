@@ -6,6 +6,7 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Resources\TodoCollection;
 use App\Http\Resources\TodoResource;
+use Illuminate\Http\Response;
 
 
 class TodoController extends Controller
@@ -17,7 +18,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return new TodoCollection(Todo::all());
+        return response()->json(new TodoCollection(Todo::all(), Response::HTTP_OK));
     }
 
     /**
@@ -70,6 +71,8 @@ class TodoController extends Controller
      */
     public function destroy(Todo $todo)
     {
-        //
+        $todo->delete();
+
+        return response()->json(null, Response::HTTP_NO_CONTENT);
     }
 }
