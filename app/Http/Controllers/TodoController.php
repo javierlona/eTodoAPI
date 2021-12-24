@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Todo;
 use Illuminate\Http\Request;
 use App\Http\Resources\TodoCollection;
+use App\Http\Resources\TodoResource;
+
 
 class TodoController extends Controller
 {
@@ -22,11 +24,15 @@ class TodoController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return TodoResource
      */
     public function store(Request $request)
     {
-        //
+        $todo = Todo::create($request->only([
+            'userId', 'title', 'completed'
+        ]));
+
+        return new TodoResource($todo);
     }
 
     /**
